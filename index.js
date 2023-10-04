@@ -8,9 +8,6 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-// e-commerceUser
-// JQe7gwfjYDQIYJFZ
-
 const uri = process.env.URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
