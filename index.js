@@ -23,10 +23,30 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
 
     await client.connect();
-    const productsCollection = client.db("e_commerceDb");
-    const products = productsCollection.collection("products");
+    const productsBd = client.db("e_commerceDb");
+    const productsCollection = productsBd.collection("products");
 
-    // Send a ping to confirm a successful connection
+
+
+
+
+    // get all products api
+    app.get('/products', async (req, res) => {
+      try {
+        const products = await productsCollection.find().toArray()
+        res.status(200).json(products);
+      } catch (err) {
+        console.error('error fetching products', err);
+        res.status(500).json({ message: "internal server error" });
+      }
+    });
+
+
+
+
+
+
+
 
     await client.db("admin").command({ ping: 1 });
     console.log(
