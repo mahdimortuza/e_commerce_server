@@ -67,3 +67,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`e commerce is open on port ${port}`);
 });
+
+// "dev": "nodemon index.js"
