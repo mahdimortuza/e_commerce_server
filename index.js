@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-const uri = process.env.URI;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.kqpbf9w.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -20,10 +20,9 @@ const client = new MongoClient(uri, {
 });
 async function run() {
   try {
-
     await client.connect();
     const productsBd = client.db("e_commerceDb");
-    const productsCollection = productsBd.collection("products");
+    const productsCollection = productsBd.collection("productsTwo");
 
     // get all products api
     app.get("/products", async (req, res) => {
